@@ -76,3 +76,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+html,
+body,
+#__nuxt {
+  @apply w-full h-full bg-zinc-900
+}

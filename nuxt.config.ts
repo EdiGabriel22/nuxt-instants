@@ -8,6 +8,12 @@ export default defineNuxtConfig({
     "shadcn-nuxt"
   ],
 
+  nitro: {
+    routeRules: {
+      "api/**": { cors: true },
+    },
+  },
+
   shadcn: {
     /**
      * Prefix for all the imported component

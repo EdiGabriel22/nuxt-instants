@@ -1,4 +1,5 @@
 const animate = require("tailwindcss-animate")
+const { fontFamily } = require("tailwindcss/defaultTheme")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -78,6 +79,9 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "collapsible-down": "collapsible-down 0.2s ease-in-out",
         "collapsible-up": "collapsible-up 0.2s ease-in-out",
+      },
+      fontFamily: {
+        sans: ['Inter', ...fontFamily.sans],
       },
     },
   },
