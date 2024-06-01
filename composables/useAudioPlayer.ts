@@ -1,16 +1,15 @@
-import slugify from "slugify"
 import type { Instant } from "~/entities/Instant"
 
 export function useAudioPlayer() {
     const currentInstant = ref<Instant>();
     const audioRef = ref<HTMLAudioElement | null>();
 
-    const isAudioTitlePlaying = (title: string) => {
+    const isAudioPlaying = (id: string) => {
         if (!currentInstant.value) {
             return false;
         }
 
-        return slugify(title) === slugify(currentInstant.value?.title);
+        return id === currentInstant.value?.id;
     };
 
     const pause = () => {
@@ -30,6 +29,6 @@ export function useAudioPlayer() {
     return {
         play,
         pause,
-        isAudioTitlePlaying
+        isAudioPlaying
     }
 }

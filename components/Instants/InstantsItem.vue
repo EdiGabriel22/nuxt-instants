@@ -19,6 +19,7 @@ import { Pause, Play } from "lucide-vue-next";
 import type { Instant } from "~/entities/Instant";
 
 const props = defineProps<{
+    id: string;
     title: string;
     audioUrl: string;
     isPlaying: boolean;
@@ -30,6 +31,6 @@ const emit = defineEmits<{
 
 
 const tooglePlayPause = () => {
-    emit("play", { title: props.title, audioUrl: props.audioUrl});
+    emit("play", { id: props.id, title: props.title, audioUrl: props.audioUrl});
 };
 </script>
