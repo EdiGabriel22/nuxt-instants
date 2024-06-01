@@ -1,6 +1,7 @@
 import { CheerioAPI } from "cheerio"
 import { ReadAllResponse } from "./types"
 import { BASE_URL, CATEGORIES_INSTANTS_READ_ALL_URL, READ_ALL_URL, RECENT_URL, SEARCH_URL } from "~/server/config/url"
+import slugify from "slugify"
 
 export function NewController(cheerio: CheerioAPI) {
     async function readAll() {
@@ -20,6 +21,7 @@ export function NewController(cheerio: CheerioAPI) {
             const [, audioUrl] = audio.split("'")
           
             response.push({
+                id: slugify(title),
                 title,
                 audioUrl: `${BASE_URL}${audioUrl}`,
             })
@@ -45,6 +47,7 @@ export function NewController(cheerio: CheerioAPI) {
             const [, audioUrl] = audio.split("'")
           
             response.push({
+                id: slugify(title),
                 title,
                 audioUrl: `${BASE_URL}${audioUrl}`,
             })
@@ -70,6 +73,7 @@ export function NewController(cheerio: CheerioAPI) {
             const [, audioUrl] = audio.split("'")
           
             response.push({
+                id: slugify(title),
                 title,
                 audioUrl: `${BASE_URL}${audioUrl}`,
             })
@@ -95,6 +99,7 @@ export function NewController(cheerio: CheerioAPI) {
             const [, audioUrl] = audio.split("'")
           
             response.push({
+                id: slugify(title),
                 title,
                 audioUrl: `${BASE_URL}${audioUrl}`,
             })

@@ -1,11 +1,7 @@
-<template lang="">
-    <div class="flex flex-col p-5 bg-zinc-800">
-        <slot/>
-    </div>
+<template>
+    <ScrollArea class="bg-zinc-800">
+        <div class="flex flex-col h-screen p-5 ">
+            <slot/>
+        </div>
+    </ScrollArea>
 </template>
-
-<script>
-export default {
-    
-}
-</script>

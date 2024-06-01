@@ -1,6 +1,6 @@
 <template>
     <div class="flex w-full h-full">
-        <MenuNavigation />
+        <MenuNavigation class="hidden md:block" />
         
         <MainContent class="flex-1">
             <slot>
