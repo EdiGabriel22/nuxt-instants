@@ -3,6 +3,8 @@ import type { Instant } from "~/entities/Instant";
 const currentInstant = ref<Instant>();
 const audioRef = ref<HTMLAudioElement | null>();
 const progress = ref<number>(0)
+const duration = ref<number>(0)
+const playing = ref<boolean>(false)
 
 export function useAudioPlayer() {
 
@@ -16,7 +18,7 @@ export function useAudioPlayer() {
 
     const pause = () => {
         audioRef.value?.pause();
-        currentInstant.value = undefined;
+        playing.value = false;
     }
 
     const play = (instant: Instant) => {
@@ -26,6 +28,8 @@ export function useAudioPlayer() {
 
         audioRef.value = new Audio(instant.audioUrl);
         audioRef.value.play();
+        playing.value = true;
+        duration.value = audioRef.value.duration;
 
         audioRef.value.onended = () => {
             pause()
@@ -45,6 +49,7 @@ export function useAudioPlayer() {
         play,
         pause,
         isAudioPlaying,
-        progress
+        progress,
+        playing,duration
     }
 }

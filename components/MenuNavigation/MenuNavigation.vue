@@ -32,7 +32,7 @@
                 @play="play"
                 @pause="pause"
                 :title="currentInstant.title"
-                :is-playing="isAudioPlaying(currentInstant.id)"
+                :is-playing="playing"
                 :progress="progress"
             />
         </div>
@@ -42,6 +42,6 @@
 <script setup lang="ts">
   import { AudioLines, AudioWaveform } from 'lucide-vue-next';
 
-  const { currentInstant, play, pause, isAudioPlaying, progress } = useAudioPlayer()
+  const { currentInstant, play, pause, playing, progress } = useAudioPlayer()
 
 </script>
