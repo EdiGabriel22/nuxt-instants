@@ -24,7 +24,7 @@
                 <Slider
                   v-model="currentProgress" :max="100" :step="1"
                 />
-                <span>0:00</span>
+                <span>{{duration}}</span>
             </div>
         </div>
     </div>
@@ -39,6 +39,7 @@ import Slider from "../ui/slider/Slider.vue";
 const props = defineProps<{
     title: string,
     progress: number,
+    duration: number,
     isPlaying: Boolean
 }>();
 

@@ -1,55 +1,59 @@
-import type { Instant } from "~/entities/Instant";
+import type { Instant } from "@/entities/Instant";
 
 const currentInstant = ref<Instant>();
-const audioRef = ref<HTMLAudioElement | null>();
-const progress = ref<number>(0)
-const duration = ref<number>(0)
-const playing = ref<boolean>(false)
+const audioRef = ref<HTMLAudioElement | null>(null);
+const progress = ref<number>(0);
+const duration = ref<number>(0);
+const playing = ref<boolean>(false);
 
 export function useAudioPlayer() {
-
-    const isAudioPlaying = (id: string) => {
-        if (!currentInstant.value) {
-            return false;
-        }
-
-        return id === currentInstant.value?.id;
-    };
-
-    const pause = () => {
-        audioRef.value?.pause();
-        playing.value = false;
+  const isAudioPlaying = (id: string) => {
+    if (!currentInstant.value) {
+      return false;
     }
 
-    const play = (instant: Instant) => {
-        pause();
+    return id === currentInstant.value.id;
+  };
 
-        currentInstant.value = instant;
+  const pause = () => {
+    audioRef.value?.pause();
+    playing.value = false;
+  };
 
-        audioRef.value = new Audio(instant.audioUrl);
-        audioRef.value.play();
-        playing.value = true;
-        duration.value = audioRef.value.duration;
+  const play = (instant: Instant) => {
+    pause();
 
-        audioRef.value.onended = () => {
-            pause()
-        }
+    currentInstant.value = instant;
 
-        audioRef.value.ontimeupdate = () => {
-            if (!audioRef.value) {
-                return
-            }
+    audioRef.value = new Audio(instant.audioUrl);
+    audioRef.value.play();
+    playing.value = true;
 
-            progress.value = (audioRef.value.currentTime / audioRef.value.duration) * 100
-        }
+    audioRef.value.onended = () => {
+      pause();
     };
 
-    return {
-        currentInstant,
-        play,
-        pause,
-        isAudioPlaying,
-        progress,
-        playing,duration
-    }
+    audioRef.value.ontimeupdate = () => {
+      if (!audioRef.value) {
+        return;
+      }
+
+      duration.value = audioRef.value.duration;
+      progress.value = Number(
+        ((audioRef.value.currentTime / audioRef.value.duration) * 100).toFixed(
+          0,
+        ),
+      );
+    };
+  };
+
+  return {
+    currentInstant,
+    play,
+    pause,
+    isAudioPlaying,
+    progress,
+    playing,
+    duration,
+  };
 }

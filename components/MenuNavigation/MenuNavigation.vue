@@ -31,6 +31,7 @@
             <MiniPlayer
                 @play="play"
                 @pause="pause"
+                :duration="duration"
                 :title="currentInstant.title"
                 :is-playing="playing"
                 :progress="progress"
@@ -42,6 +43,6 @@
 <script setup lang="ts">
   import { AudioLines, AudioWaveform } from 'lucide-vue-next';
 
-  const { currentInstant, play, pause, playing, progress } = useAudioPlayer()
+  const { currentInstant, play, pause, playing, progress, duration } = useAudioPlayer()
 
 </script>
